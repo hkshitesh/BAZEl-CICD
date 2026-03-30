@@ -1,0 +1,24 @@
+name: Bazel CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Bazel
+        uses: bazelbuild/setup-bazelisk@v2
+
+      - name: Build project
+        run: bazel build //app:calculator_app
+
+      - name: Run tests
+        run: bazel test //app:math_test
