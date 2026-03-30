@@ -28,10 +28,10 @@ jobs:
         run: bazel build //app:calculator_app
 
       - name: Run tests
-        run: bazel test //app:math_test
-
-      - name: Upload build artifact
+        run: bazel test //app:math_test 
+          
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: calculator_binary
-          path: bazel-bin/app/calculator_app
+          name: bazel-build
+          path: bazel-bin/
